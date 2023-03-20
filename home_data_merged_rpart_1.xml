@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<PMML version="4.4.1" xmlns="http://www.dmg.org/PMML-4_4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dmg.org/PMML-4_4 http://www.dmg.org/pmml/v4-4/pmml-4-4.xsd">
+ <Header copyright="Copyright (c) 2023 gwalters" description="RPart Decision Tree Model">
+  <Extension name="user" value="gwalters" extender="SoftwareAG PMML Generator"/>
+  <Application name="SoftwareAG PMML Generator" version="2.5.2"/>
+  <Timestamp>2023-03-19 13:31:56</Timestamp>
+ </Header>
+ <DataDictionary numberOfFields="5">
+  <DataField name="buy_or_rent" optype="continuous" dataType="double">
+   <Interval closure="closedClosed" leftMargin="0" rightMargin="1"/>
+  </DataField>
+  <DataField name="SizeRank.x" optype="continuous" dataType="double">
+   <Interval closure="closedClosed" leftMargin="1" rightMargin="927"/>
+  </DataField>
+  <DataField name="StateName.x" optype="categorical" dataType="string">
+   <Value value="AK"/>
+   <Value value="AL"/>
+   <Value value="AR"/>
+   <Value value="AZ"/>
+   <Value value="CA"/>
+   <Value value="CO"/>
+   <Value value="CT"/>
+   <Value value="DE"/>
+   <Value value="FL"/>
+   <Value value="GA"/>
+   <Value value="HI"/>
+   <Value value="IA"/>
+   <Value value="ID"/>
+   <Value value="IL"/>
+   <Value value="IN"/>
+   <Value value="KS"/>
+   <Value value="KY"/>
+   <Value value="LA"/>
+   <Value value="MA"/>
+   <Value value="MD"/>
+   <Value value="ME"/>
+   <Value value="MI"/>
+   <Value value="MN"/>
+   <Value value="MO"/>
+   <Value value="MS"/>
+   <Value value="MT"/>
+   <Value value="NC"/>
+   <Value value="ND"/>
+   <Value value="NE"/>
+   <Value value="NH"/>
+   <Value value="NJ"/>
+   <Value value="NM"/>
+   <Value value="NV"/>
+   <Value value="NY"/>
+   <Value value="OH"/>
+   <Value value="OK"/>
+   <Value value="OR"/>
+   <Value value="PA"/>
+   <Value value="RI"/>
+   <Value value="SC"/>
+   <Value value="SD"/>
+   <Value value="TN"/>
+   <Value value="TX"/>
+   <Value value="UT"/>
+   <Value value="VA"/>
+   <Value value="VT"/>
+   <Value value="WA"/>
+   <Value value="WI"/>
+   <Value value="WV"/>
+   <Value value="WY"/>
+  </DataField>
+  <DataField name="rental_X2023.01.31" optype="continuous" dataType="double">
+   <Interval closure="closedClosed" leftMargin="6" rightMargin="43381"/>
+  </DataField>
+  <DataField name="value_X2023.01.31" optype="continuous" dataType="double">
+   <Interval closure="closedClosed" leftMargin="35663.6880972574" rightMargin="1385815.95398727"/>
+  </DataField>
+ </DataDictionary>
+ <TreeModel modelName="RPart_Model" functionName="classification" algorithmName="rpart" splitCharacteristic="binarySplit" missingValueStrategy="defaultChild" noTrueChildStrategy="returnLastPrediction">
+  <MiningSchema>
+   <MiningField name="buy_or_rent" usageType="predicted" invalidValueTreatment="returnInvalid"/>
+   <MiningField name="SizeRank.x" usageType="active" invalidValueTreatment="returnInvalid"/>
+   <MiningField name="StateName.x" usageType="active" invalidValueTreatment="returnInvalid"/>
+   <MiningField name="rental_X2023.01.31" usageType="active" invalidValueTreatment="returnInvalid"/>
+   <MiningField name="value_X2023.01.31" usageType="active" invalidValueTreatment="returnInvalid"/>
+  </MiningSchema>
+  <Output>
+   <OutputField name="Predicted_buy_or_rent" optype="categorical" dataType="string" feature="predictedValue"/>
+   <OutputField name="Probability_0" optype="continuous" dataType="double" feature="probability" value="0"/>
+   <OutputField name="Probability_1" optype="continuous" dataType="double" feature="probability" value="1"/>
+  </Output>
+  <Node id="1" score="1" recordCount="648" defaultChild="3">
+   <True/>
+   <ScoreDistribution value="0" recordCount="112" confidence="0.17283950617284"/>
+   <ScoreDistribution value="1" recordCount="536" confidence="0.827160493827161"/>
+   <Node id="2" score="0" recordCount="147" defaultChild="4">
+    <SimplePredicate field="rental_X2023.01.31" operator="greaterOrEqual" value="616"/>
+    <ScoreDistribution value="0" recordCount="106" confidence="0.72108843537415"/>
+    <ScoreDistribution value="1" recordCount="41" confidence="0.27891156462585"/>
+    <Node id="4" score="0" recordCount="113" defaultChild="8">
+     <SimpleSetPredicate field="StateName.x" booleanOperator="isIn">
+      <Array n="32" type="string">&quot;AL&quot; &quot;CT&quot; &quot;DE&quot; &quot;FL&quot; &quot;GA&quot; &quot;IA&quot; &quot;ID&quot; &quot;IL&quot; &quot;IN&quot; &quot;KS&quot; &quot;KY&quot; &quot;MA&quot; &quot;ME&quot; &quot;MI&quot; &quot;MN&quot; &quot;MO&quot; &quot;MS&quot; &quot;NC&quot; &quot;NE&quot; &quot;NM&quot; &quot;NY&quot; &quot;OH&quot; &quot;OK&quot; &quot;PA&quot; &quot;RI&quot; &quot;SC&quot; &quot;TN&quot; &quot;TX&quot; &quot;VA&quot; &quot;WA&quot; &quot;WI&quot; &quot;WV&quot;</Array>
+     </SimpleSetPredicate>
+     <ScoreDistribution value="0" recordCount="98" confidence="0.867256637168142"/>
+     <ScoreDistribution value="1" recordCount="15" confidence="0.132743362831858"/>
+     <Node id="8" score="0" recordCount="74">
+      <SimplePredicate field="rental_X2023.01.31" operator="greaterOrEqual" value="1109"/>
+      <ScoreDistribution value="0" recordCount="73" confidence="0.986486486486486"/>
+      <ScoreDistribution value="1" recordCount="1" confidence="0.0135135135135135"/>
+     </Node>
+     <Node id="9" score="0" recordCount="39" defaultChild="18">
+      <SimplePredicate field="rental_X2023.01.31" operator="lessThan" value="1109"/>
+      <ScoreDistribution value="0" recordCount="25" confidence="0.641025641025641"/>
+      <ScoreDistribution value="1" recordCount="14" confidence="0.358974358974359"/>
+      <Node id="18" score="0" recordCount="16">
+       <SimpleSetPredicate field="StateName.x" booleanOperator="isIn">
+        <Array n="9" type="string">&quot;AL&quot; &quot;GA&quot; &quot;IA&quot; &quot;IL&quot; &quot;IN&quot; &quot;OH&quot; &quot;PA&quot; &quot;WI&quot; &quot;WV&quot;</Array>
+       </SimpleSetPredicate>
+       <ScoreDistribution value="0" recordCount="16" confidence="1"/>
+       <ScoreDistribution value="1" recordCount="0" confidence="0"/>
+      </Node>
+      <Node id="19" score="1" recordCount="23" defaultChild="38">
+       <SimpleSetPredicate field="StateName.x" booleanOperator="isIn">
+        <Array n="8" type="string">&quot;FL&quot; &quot;MA&quot; &quot;MI&quot; &quot;NC&quot; &quot;NY&quot; &quot;SC&quot; &quot;TN&quot; &quot;TX&quot;</Array>
+       </SimpleSetPredicate>
+       <ScoreDistribution value="0" recordCount="9" confidence="0.391304347826087"/>
+       <ScoreDistribution value="1" recordCount="14" confidence="0.608695652173913"/>
+       <Node id="38" score="0" recordCount="15">
+        <SimplePredicate field="value_X2023.01.31" operator="lessThan" value="326053.3"/>
+        <ScoreDistribution value="0" recordCount="9" confidence="0.6"/>
+        <ScoreDistribution value="1" recordCount="6" confidence="0.4"/>
+       </Node>
+       <Node id="39" score="1" recordCount="7">
+        <SimplePredicate field="value_X2023.01.31" operator="greaterOrEqual" value="326053.3"/>
+        <ScoreDistribution value="0" recordCount="0" confidence="0"/>
+        <ScoreDistribution value="1" recordCount="7" confidence="1"/>
+       </Node>
+      </Node>
+     </Node>
+    </Node>
+    <Node id="5" score="1" recordCount="34" defaultChild="10">
+     <SimpleSetPredicate field="StateName.x" booleanOperator="isIn">
+      <Array n="10" type="string">&quot;AK&quot; &quot;AR&quot; &quot;AZ&quot; &quot;CA&quot; &quot;CO&quot; &quot;HI&quot; &quot;NJ&quot; &quot;NV&quot; &quot;OR&quot; &quot;UT&quot;</Array>
+     </SimpleSetPredicate>
+     <ScoreDistribution value="0" recordCount="8" confidence="0.235294117647059"/>
+     <ScoreDistribution value="1" recordCount="26" confidence="0.764705882352941"/>
+     <Node id="10" score="0" recordCount="7">
+      <SimplePredicate field="rental_X2023.01.31" operator="greaterOrEqual" value="1912"/>
+      <ScoreDistribution value="0" recordCount="6" confidence="0.857142857142857"/>
+      <ScoreDistribution value="1" recordCount="1" confidence="0.142857142857143"/>
+     </Node>
+     <Node id="11" score="1" recordCount="27">
+      <SimplePredicate field="rental_X2023.01.31" operator="lessThan" value="1912"/>
+      <ScoreDistribution value="0" recordCount="2" confidence="0.0740740740740741"/>
+      <ScoreDistribution value="1" recordCount="25" confidence="0.925925925925926"/>
+     </Node>
+    </Node>
+   </Node>
+   <Node id="3" score="1" recordCount="501" defaultChild="6">
+    <SimplePredicate field="rental_X2023.01.31" operator="lessThan" value="616"/>
+    <ScoreDistribution value="0" recordCount="6" confidence="0.0119760479041916"/>
+    <ScoreDistribution value="1" recordCount="495" confidence="0.988023952095808"/>
+    <Node id="6" score="1" recordCount="68" defaultChild="12">
+     <SimpleSetPredicate field="StateName.x" booleanOperator="isIn">
+      <Array n="5" type="string">&quot;IL&quot; &quot;LA&quot; &quot;MO&quot; &quot;NY&quot; &quot;PA&quot;</Array>
+     </SimpleSetPredicate>
+     <ScoreDistribution value="0" recordCount="6" confidence="0.0882352941176471"/>
+     <ScoreDistribution value="1" recordCount="62" confidence="0.911764705882353"/>
+     <Node id="12" score="0" recordCount="7">
+      <SimplePredicate field="rental_X2023.01.31" operator="greaterOrEqual" value="382.5"/>
+      <ScoreDistribution value="0" recordCount="5" confidence="0.714285714285714"/>
+      <ScoreDistribution value="1" recordCount="2" confidence="0.285714285714286"/>
+     </Node>
+     <Node id="13" score="1" recordCount="61">
+      <SimplePredicate field="rental_X2023.01.31" operator="lessThan" value="382.5"/>
+      <ScoreDistribution value="0" recordCount="1" confidence="0.0163934426229508"/>
+      <ScoreDistribution value="1" recordCount="60" confidence="0.983606557377049"/>
+     </Node>
+    </Node>
+    <Node id="7" score="1" recordCount="433">
+     <SimpleSetPredicate field="StateName.x" booleanOperator="isIn">
+      <Array n="43" type="string">&quot;AK&quot; &quot;AL&quot; &quot;AR&quot; &quot;AZ&quot; &quot;CA&quot; &quot;CO&quot; &quot;CT&quot; &quot;FL&quot; &quot;GA&quot; &quot;HI&quot; &quot;IA&quot; &quot;ID&quot; &quot;IN&quot; &quot;KS&quot; &quot;KY&quot; &quot;MA&quot; &quot;MD&quot; &quot;ME&quot; &quot;MI&quot; &quot;MN&quot; &quot;MS&quot; &quot;MT&quot; &quot;NC&quot; &quot;ND&quot; &quot;NE&quot; &quot;NH&quot; &quot;NJ&quot; &quot;NM&quot; &quot;NV&quot; &quot;OH&quot; &quot;OK&quot; &quot;OR&quot; &quot;SC&quot; &quot;SD&quot; &quot;TN&quot; &quot;TX&quot; &quot;UT&quot; &quot;VA&quot; &quot;VT&quot; &quot;WA&quot; &quot;WI&quot; &quot;WV&quot; &quot;WY&quot;</Array>
+     </SimpleSetPredicate>
+     <ScoreDistribution value="0" recordCount="0" confidence="0"/>
+     <ScoreDistribution value="1" recordCount="433" confidence="1"/>
+    </Node>
+   </Node>
+  </Node>
+ </TreeModel>
+</PMML>
